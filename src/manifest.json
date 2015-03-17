@@ -5,7 +5,7 @@
   "description": "This extension asks Google Mail to check for any new mail from a connected pop3 account.",
   "version": "1.0",
 
-  "browser_action": {
+  "page_action": {
     "default_icon": "refresh.png"
   },
 
@@ -15,6 +15,7 @@
 
   "permissions": [
     "cookies",
+    "tabs",
     "https://mail.google.com/"
   ]
 }

@@ -17,10 +17,10 @@ function getCookies(domain, name, callback) {
     });
 }
 
-// refresh our pop3 account
+// refresh the pop3 account
 function popPull() {
-// in normal gmail use "rid" and "_reqid" change every time. Google doesn't seem to complain if they stay the same though.
-// "at" is taken from the GMAIL_AT session cookie (the Session Authorization Key". If this value is wrong Google 
+// in normal gmail use "_reqid" and "rid" change every time. Google doesn't complain if we don't change them.
+// "at" is taken from the GMAIL_AT session cookie (the Session Authorization Key"). If this value is wrong Google 
 // returns an internal server error
 // "act" specifies which account to pull "act=cma_2" and "act=cma_1" are my two accounts
     getCookies("https://mail.google.com/mail/u/0", "GMAIL_AT", function(id) {        
@@ -33,8 +33,14 @@ function popPull() {
 // pull every 60 seconds
 setInterval(function() {popPull()}, 60000);
 
-// also pull any time the refresh button is pressed
-chrome.browserAction.onClicked.addListener(function(tab) {
+// pull any time the refresh button is pressed
+chrome.pageAction.onClicked.addListener(function(tab) {
     popPull();
 });
 
+// enable this pageAction on "mail.google.com" only
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if (tab.url.indexOf('https://mail.google.com') == 0) {
+        chrome.pageAction.show(tabId);
+    }
+});
