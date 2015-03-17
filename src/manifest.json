@@ -10,8 +10,7 @@
   },
 
   "background": {
-    "scripts": ["gPopPull.js"],
-    "persistent": false
+    "scripts": ["gPopPull.js"]
   },
 
   "permissions": [
