@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "gPopPull",
-  "description": "This extension asks Google Mail to check for any new mail from a connected pop3 account.",
+  "name": "GMail POP3 Refresher",
+  "description": "This extension forces GMail to refresh each connected POP3 account once a minute.",
   "version": "1.0",
 
   "page_action": {
